@@ -1,5 +1,5 @@
 {
-  "name": "@noorjourney/web",
+  "name": "@hyundai-kg/web",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,24 +9,16 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@noorjourney/database": "*",
-    "@noorjourney/shared": "*",
-    "bcryptjs": "^2.4.3",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "framer-motion": "^11.15.0",
     "lucide-react": "^0.468.0",
     "next": "^15.1.0",
-    "next-themes": "^0.4.4",
-    "@twa-dev/sdk": "^8.0.1",
-    "next-auth": "^4.24.11",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "tailwind-merge": "^2.6.0",
-    "zod": "^3.24.1"
+    "tailwind-merge": "^2.6.0"
   },
   "devDependencies": {
-    "@types/bcryptjs": "^2.4.6",
     "@types/node": "^22.10.2",
     "@types/react": "^19.0.2",
     "@types/react-dom": "^19.0.2",

@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 
-/** Overrides NoorJourney global body/dark styles on marketing pages */
+/** Overrides global body/dark styles on marketing pages */
 export function SiteThemeLock() {
   useEffect(() => {
     const html = document.documentElement;

@@ -1,17 +1,9 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Amiri } from "next/font/google";
-import { AppProviders } from "@/components/providers/app-providers";
-import { getServerLocale } from "@/lib/locale";
-import { isRtl } from "@noorjourney/shared";
+import { Inter } from "next/font/google";
 import { SITE } from "@/lib/kuma/content/site";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin", "cyrillic"], variable: "--font-inter" });
-const amiri = Amiri({
-  subsets: ["arabic", "latin"],
-  weight: ["400", "700"],
-  variable: "--font-amiri",
-});
 
 export const metadata: Metadata = {
   title: `${SITE.name.ky} — Кыргызстандагы коммерциялык унаалар`,
@@ -31,17 +23,10 @@ export const viewport: Viewport = {
   ],
 };
 
-export default async function RootLayout({ children }: { children: React.ReactNode }) {
-  const locale = await getServerLocale();
-
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang={locale} dir={isRtl(locale) ? "rtl" : "ltr"} suppressHydrationWarning>
-      <head>
-        <script src="https://telegram.org/js/telegram-web-app.js" async />
-      </head>
-      <body className={`${inter.variable} ${amiri.variable} font-sans`}>
-        <AppProviders locale={locale}>{children}</AppProviders>
-      </body>
+    <html lang="ky" suppressHydrationWarning>
+      <body className={`${inter.variable} font-sans`}>{children}</body>
     </html>
   );
 }

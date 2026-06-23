@@ -1,20 +1,14 @@
 {
-  "name": "noorjourney",
+  "name": "hyundai-kyrgyzstan-commercial",
   "private": true,
   "workspaces": [
-    "apps/*",
-    "packages/*"
+    "apps/*"
   ],
   "scripts": {
-    "dev": "turbo dev",
-    "build": "turbo build",
-    "build:web": "npm run build --workspace=@noorjourney/web",
-    "start:web": "npm run start --workspace=@noorjourney/web",
-    "lint": "turbo lint",
-    "db:generate": "npm run generate --workspace=@noorjourney/database",
-    "db:push": "npm run push --workspace=@noorjourney/database",
-    "db:seed": "npm run seed --workspace=@noorjourney/database",
-    "db:studio": "npm run studio --workspace=@noorjourney/database"
+    "dev": "npm run dev --workspace=@hyundai-kg/web",
+    "build": "npm run build --workspace=@hyundai-kg/web",
+    "start": "npm run start --workspace=@hyundai-kg/web",
+    "lint": "npm run lint --workspace=@hyundai-kg/web"
   },
   "devDependencies": {
     "turbo": "^2.3.3",
