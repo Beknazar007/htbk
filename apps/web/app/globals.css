@@ -1,0 +1,454 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  :root {
+    --background: 45 33% 97%;
+    --foreground: 170 60% 10%;
+    --card: 0 0% 100%;
+    --border: 168 30% 90%;
+  }
+
+  .dark {
+    --background: 170 60% 6%;
+    --foreground: 160 20% 95%;
+    --card: 170 50% 8%;
+    --border: 170 30% 18%;
+  }
+
+  body {
+    @apply overflow-x-hidden bg-white text-brand-black antialiased;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Fluid type scale: phone → laptop → TV */
+  html {
+    font-size: 16px;
+  }
+
+  @media (min-width: 768px) {
+    html {
+      font-size: 16px;
+    }
+  }
+
+  @media (min-width: 1920px) {
+    html {
+      font-size: 18px;
+    }
+  }
+
+  @media (min-width: 2560px) {
+    html {
+      font-size: 20px;
+    }
+  }
+
+  .font-arabic {
+    font-family: var(--font-amiri), "Traditional Arabic", serif;
+  }
+}
+
+@layer components {
+  .noor-card {
+    @apply rounded-2xl border border-noor-100 bg-white p-4 shadow-sm sm:p-6;
+    @apply dark:border-noor-800 dark:bg-noor-900/80;
+  }
+
+  .noor-btn {
+    @apply inline-flex items-center justify-center rounded-xl px-5 py-2.5 text-sm font-medium transition-all;
+  }
+
+  .noor-btn-primary {
+    @apply noor-btn bg-noor-700 text-white hover:bg-noor-800 active:scale-[0.98];
+    @apply dark:bg-noor-600 dark:hover:bg-noor-500;
+  }
+
+  .noor-btn-secondary {
+    @apply noor-btn border border-noor-200 bg-white text-noor-800 hover:bg-noor-50;
+    @apply dark:border-noor-700 dark:bg-noor-900 dark:text-noor-100 dark:hover:bg-noor-800;
+  }
+
+  .noor-input {
+    @apply w-full rounded-xl border border-noor-200 bg-white px-4 py-2.5 text-sm outline-none transition;
+    @apply focus:border-noor-500 focus:ring-2 focus:ring-noor-200;
+    @apply dark:border-noor-700 dark:bg-noor-900 dark:text-noor-50 dark:focus:ring-noor-800;
+  }
+
+  .noor-badge {
+    @apply inline-flex items-center rounded-full px-3 py-1 text-xs font-medium;
+  }
+
+  /* Telegram Mini App safe areas */
+  .tg-safe-top {
+    padding-top: max(0.75rem, env(safe-area-inset-top));
+  }
+
+  .tg-safe-bottom {
+    padding-bottom: max(1rem, env(safe-area-inset-bottom));
+  }
+
+  /* Truck & Bus scroll animations — content stays visible */
+  .kuma-reveal-up,
+  .kuma-reveal-left,
+  .kuma-reveal-right,
+  .kuma-reveal-none {
+    opacity: 1;
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  }
+
+  .kuma-reveal-up {
+    transform: translateY(24px);
+  }
+
+  .kuma-reveal-left {
+    transform: translateX(-24px);
+  }
+
+  .kuma-reveal-right {
+    transform: translateX(24px);
+  }
+
+  .kuma-reveal-none {
+    transform: none;
+  }
+
+  .kuma-visible {
+    opacity: 1 !important;
+    transform: translate(0, 0) !important;
+  }
+
+  .kuma-btn {
+    @apply inline-flex min-h-[48px] items-center justify-center rounded-lg px-6 py-3 text-sm font-semibold transition-all duration-300;
+    @apply sm:min-h-[44px] sm:py-3;
+    @apply 3xl:min-h-[52px] 3xl:px-8 3xl:py-4 3xl:text-base;
+  }
+
+  @media (min-width: 2560px) {
+    .kuma-btn {
+      min-height: 3.5rem;
+      padding-left: 2.5rem;
+      padding-right: 2.5rem;
+      font-size: 1.125rem;
+    }
+  }
+
+  .kuma-btn-primary {
+    @apply kuma-btn bg-brand-accent text-white shadow-lg shadow-brand-accent/20 hover:bg-brand-accent-hover hover:shadow-brand-accent/30 active:scale-[0.98];
+  }
+
+  .kuma-btn-outline {
+    @apply kuma-btn border-2 border-white text-white backdrop-blur-sm hover:border-white hover:bg-white/10;
+  }
+
+  .kuma-btn-outline-dark {
+    @apply kuma-btn border-2 border-brand-navy/20 text-brand-navy hover:border-brand-accent hover:text-brand-accent;
+  }
+
+  .kuma-btn-whatsapp {
+    @apply kuma-btn gap-2 bg-[#25D366] text-white shadow-lg shadow-[#25D366]/25 hover:bg-[#20bd5a] hover:shadow-[#25D366]/40 active:scale-[0.98];
+  }
+
+  .kuma-card {
+    @apply overflow-hidden rounded-2xl bg-white shadow-md ring-1 ring-gray-100 transition-all duration-500 hover:shadow-2xl hover:shadow-brand-accent/5 hover:ring-brand-accent/10;
+  }
+
+  .kuma-social-link {
+    @apply inline-flex items-center gap-3 rounded-xl px-4 py-2 transition-transform active:scale-95;
+  }
+
+  .kuma-social-icon {
+    @apply flex h-12 w-12 items-center justify-center rounded-full shadow-lg transition-transform group-hover:scale-110 sm:h-14 sm:w-14;
+  }
+
+  .kuma-mobile-menu {
+    @apply overflow-hidden border-t border-kuma-100 bg-white backdrop-blur-lg transition-all duration-300 ease-in-out;
+    background-color: rgba(255, 255, 255, 0.98);
+  }
+
+  .kuma-mobile-menu-open {
+    @apply max-h-[80vh] opacity-100;
+  }
+
+  .kuma-mobile-menu-closed {
+    @apply max-h-0 opacity-0;
+  }
+
+  .kuma-section {
+    @apply px-4 py-10 sm:px-6 sm:py-14 md:py-20 lg:px-8 lg:py-24 xl:py-28 2xl:py-32 3xl:py-36 4xl:py-40;
+  }
+
+  .kuma-container {
+    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 md:px-8 lg:px-10 xl:max-w-[1280px] 2xl:max-w-[1440px] 3xl:max-w-[1680px] 4xl:max-w-[2200px];
+  }
+
+  .kuma-heading {
+    @apply text-2xl font-bold leading-tight xs:text-[1.65rem] sm:text-3xl md:text-4xl lg:text-[2.5rem] xl:text-5xl 2xl:text-5xl 3xl:text-6xl;
+  }
+
+  @media (min-width: 2560px) {
+    .kuma-heading {
+      font-size: 4.5rem;
+    }
+
+    .kuma-subheading {
+      font-size: 1.5rem;
+    }
+  }
+
+  .kuma-label {
+    @apply mb-3 inline-block text-[10px] font-semibold uppercase tracking-[0.2em] text-brand-accent xs:text-xs sm:text-xs 3xl:text-sm;
+  }
+
+  .kuma-safe-top {
+    padding-top: max(0px, env(safe-area-inset-top));
+  }
+
+  .kuma-safe-bottom {
+    padding-bottom: max(0px, env(safe-area-inset-bottom));
+  }
+
+  .kuma-page-mobile {
+    @apply pb-[calc(4.5rem+env(safe-area-inset-bottom))] lg:pb-0;
+  }
+
+  .kuma-touch {
+    @apply min-h-[48px] min-w-[48px];
+  }
+
+  .kuma-card-image {
+    @apply aspect-[16/10] w-full object-cover sm:aspect-[16/9] 2xl:aspect-[2/1];
+  }
+
+  @keyframes kuma-hero-ken-burns {
+    0% {
+      transform: scale(1) translate(0, 0);
+    }
+    100% {
+      transform: scale(1.08) translate(-1%, -0.5%);
+    }
+  }
+
+  .kuma-hero-ken-burns {
+    animation: kuma-hero-ken-burns 18s ease-out forwards;
+  }
+
+  @keyframes kuma-hero-slide {
+    0% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    3% {
+      opacity: 1;
+    }
+    14% {
+      opacity: 1;
+      transform: scale(1.06);
+    }
+    17% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+
+  .kuma-hero-slide {
+    animation: kuma-hero-slide 30s ease-in-out infinite;
+    animation-fill-mode: both;
+  }
+
+  .kuma-hero-truck {
+    @apply object-contain object-bottom;
+  }
+
+  .kuma-banner-truck {
+    @apply object-contain object-center;
+  }
+
+  /* Hides baked-in AI/Gemini marks at the bottom without replacing image files */
+  .kuma-image-frame {
+    @apply relative h-full w-full overflow-hidden bg-slate-100;
+  }
+
+  .kuma-image-frame__img {
+    @apply h-full w-full object-cover;
+    object-position: center 28%;
+    transform: scale(1.22);
+  }
+
+  .kuma-hero-truck.kuma-hero-clean {
+    object-fit: cover;
+    object-position: center 32%;
+    transform: scale(1.1);
+  }
+
+  .kuma-model-card-image {
+    @apply object-contain object-center transition-transform duration-700 ease-out group-hover:scale-[1.02];
+  }
+
+  .kuma-truck-image {
+    @apply object-contain object-center;
+  }
+
+  .kuma-truck-card {
+    @apply object-contain object-center transition-transform duration-700 ease-out group-hover:scale-[1.02];
+  }
+
+  /* Promo video — 10s Hyundai-style timeline */
+  @keyframes kuma-promo-ken-burns {
+    0% {
+      transform: scale(1) translateY(0);
+    }
+    100% {
+      transform: scale(1.12) translateY(-2%);
+    }
+  }
+
+  .kuma-promo-ken-burns {
+    animation: kuma-promo-ken-burns 10s ease-out forwards;
+  }
+
+  @keyframes kuma-promo-fade-up {
+    0% {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes kuma-promo-fade-in {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  @keyframes kuma-promo-progress {
+    0% {
+      width: 0%;
+    }
+    100% {
+      width: 100%;
+    }
+  }
+
+  .kuma-promo-brand {
+    animation: kuma-promo-fade-in 0.6s ease-out 0.2s both;
+  }
+
+  .kuma-promo-title {
+    animation: kuma-promo-fade-up 0.8s ease-out 0.8s both;
+  }
+
+  .kuma-promo-advantages {
+    animation: kuma-promo-fade-up 0.8s ease-out 5s both;
+  }
+
+  .kuma-promo-tagline {
+    animation: kuma-promo-fade-in 0.6s ease-out 7s both;
+  }
+
+  .kuma-promo-progress {
+    animation: kuma-promo-progress 10s linear forwards;
+  }
+
+  /* KTM animations */
+  .ktm-reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+  }
+
+  .ktm-visible {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+  }
+
+  @keyframes ktm-hero-fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(24px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .ktm-hero-in {
+    animation: ktm-hero-fade-up 0.8s ease-out both;
+  }
+
+  .ktm-hero-in-delay-1 {
+    animation-delay: 0.1s;
+  }
+
+  .ktm-hero-in-delay-2 {
+    animation-delay: 0.2s;
+  }
+
+  .ktm-hero-in-delay-3 {
+    animation-delay: 0.3s;
+  }
+
+  /* KTM design system */
+  .ktm-site {
+    overflow-x: clip;
+    max-width: 100vw;
+  }
+
+  .ktm-container {
+    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 3xl:max-w-[90rem] 4xl:max-w-[100rem];
+  }
+
+  .ktm-section {
+    @apply px-4 py-16 sm:px-6 sm:py-20 md:py-24 lg:px-8 lg:py-28 3xl:py-32;
+  }
+
+  .ktm-card {
+    @apply rounded-2xl bg-white shadow-lg ring-1 ring-gray-100 transition-all duration-300 hover:shadow-xl;
+  }
+
+  .ktm-motion-fade {
+    opacity: 0;
+    transform: translateY(28px);
+    transition:
+      opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .ktm-motion-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .ktm-page-in {
+    animation: ktm-page-in 0.4s ease-out both;
+  }
+
+  @keyframes ktm-page-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  img,
+  video {
+    max-width: 100%;
+    height: auto;
+  }
+}

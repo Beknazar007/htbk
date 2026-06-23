@@ -1,0 +1,521 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+enum UserStatus {
+  ACTIVE
+  INACTIVE
+  SUSPENDED
+}
+
+enum Role {
+  ADMIN
+  TEACHER
+  STUDENT
+  PARENT
+}
+
+enum CourseType {
+  MEMORIZATION
+  REVISION
+  TAJWEED
+  MIXED
+}
+
+enum CourseStatus {
+  DRAFT
+  ACTIVE
+  ARCHIVED
+}
+
+enum GroupStatus {
+  ACTIVE
+  ARCHIVED
+}
+
+enum GroupMemberStatus {
+  ACTIVE
+  REMOVED
+}
+
+enum PlanStatus {
+  DRAFT
+  PUBLISHED
+}
+
+enum PlanItemType {
+  READ
+  MEMORIZE
+  REVISE
+  LISTEN
+}
+
+enum SubmissionStatus {
+  PENDING
+  SUBMITTED
+  REVIEWED
+}
+
+enum ReviewDecision {
+  APPROVED
+  REJECTED
+  NEEDS_REVISION
+}
+
+enum AchievementCategory {
+  MILESTONE
+  STREAK
+  VOLUME
+  SUBMISSION
+}
+
+enum RankingPeriod {
+  WEEKLY
+  MONTHLY
+  ALL_TIME
+}
+
+enum SurahProgressStatus {
+  NOT_STARTED
+  IN_PROGRESS
+  MEMORIZED
+  MASTERED
+}
+
+model User {
+  id            String     @id @default(cuid())
+  email         String?    @unique
+  phone         String?
+  passwordHash  String?
+  fullName      String
+  avatarUrl     String?
+  locale        String     @default("ky")
+  status        UserStatus @default(ACTIVE)
+  lastActiveAt  DateTime?
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
+
+  roles              UserRole[]
+  teacherProfile     TeacherProfile?
+  studentProfile     StudentProfile?
+  parentProfile      ParentProfile?
+  parentLinks        ParentStudentLink[] @relation("ParentLinks")
+  childLinks         ParentStudentLink[] @relation("ChildLinks")
+  taughtGroups       Group[]             @relation("GroupTeacher")
+  createdCourses     Course[]            @relation("CourseCreator")
+  dailyPlans         DailyPlan[]         @relation("PlanTeacher")
+  studentPlans       DailyPlan[]         @relation("PlanStudent")
+  submissions        Submission[]
+  reviews            Review[]
+  progressSnapshots  ProgressSnapshot[]
+  userAchievements   UserAchievement[]
+  streak             Streak?
+  parentReports      WeeklyReport[]      @relation("ReportParent")
+  studentReports     WeeklyReport[]      @relation("ReportStudent")
+  notifications      Notification[]
+  auditLogs          AuditLog[]          @relation("AuditActor")
+  groupMemberships   GroupStudent[]
+  activityDays       StudentActivityDay[]
+  surahProgress      SurahProgress[]
+  groupRankingEntries GroupRankingEntry[]
+  monthlyChampions   MonthlyChampion[]
+
+  @@index([status, lastActiveAt])
+  @@map("users")
+}
+
+model UserRole {
+  id     String @id @default(cuid())
+  userId String
+  role   Role
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, role])
+  @@map("user_roles")
+}
+
+model TeacherProfile {
+  userId             String  @id
+  bio                String?
+  specialization     String?
+  yearsOfExperience  Int?
+  user               User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("teacher_profiles")
+}
+
+model StudentProfile {
+  userId         String    @id
+  dateOfBirth    DateTime?
+  enrollmentDate DateTime  @default(now())
+  currentLevel   String?
+  user           User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("student_profiles")
+}
+
+model ParentProfile {
+  userId String @id
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("parent_profiles")
+}
+
+model ParentStudentLink {
+  id           String @id @default(cuid())
+  parentId     String
+  studentId    String
+  relationship String @default("guardian")
+  parent       User   @relation("ParentLinks", fields: [parentId], references: [id], onDelete: Cascade)
+  student      User   @relation("ChildLinks", fields: [studentId], references: [id], onDelete: Cascade)
+
+  @@unique([parentId, studentId])
+  @@map("parent_student_links")
+}
+
+model Course {
+  id          String       @id @default(cuid())
+  name        String
+  description String?
+  type        CourseType   @default(MIXED)
+  status      CourseStatus @default(DRAFT)
+  createdById String
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+
+  createdBy User            @relation("CourseCreator", fields: [createdById], references: [id])
+  modules   CourseModule[]
+  groups    Group[]
+  progress  ProgressSnapshot[]
+
+  @@map("courses")
+}
+
+model CourseModule {
+  id              String @id @default(cuid())
+  courseId        String
+  title           String
+  orderIndex      Int
+  quranStartSurah Int?
+  quranStartAyah  Int?
+  quranEndSurah   Int?
+  quranEndAyah    Int?
+
+  course Course @relation(fields: [courseId], references: [id], onDelete: Cascade)
+
+  @@map("course_modules")
+}
+
+model Group {
+  id          String      @id @default(cuid())
+  name        String
+  courseId    String?
+  teacherId   String
+  maxStudents Int         @default(30)
+  status      GroupStatus @default(ACTIVE)
+  inviteCode  String      @unique @default(cuid())
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+
+  course    Course?        @relation(fields: [courseId], references: [id])
+  teacher   User           @relation("GroupTeacher", fields: [teacherId], references: [id])
+  students         GroupStudent[]
+  dailyPlans       DailyPlan[]
+  rankingEntries   GroupRankingEntry[]
+  monthlyChampions MonthlyChampion[]
+
+  @@map("groups")
+}
+
+model GroupStudent {
+  id        String            @id @default(cuid())
+  groupId   String
+  studentId String
+  status    GroupMemberStatus @default(ACTIVE)
+  joinedAt  DateTime          @default(now())
+
+  group   Group @relation(fields: [groupId], references: [id], onDelete: Cascade)
+  student User  @relation(fields: [studentId], references: [id], onDelete: Cascade)
+
+  @@unique([groupId, studentId])
+  @@map("group_students")
+}
+
+model DailyPlan {
+  id         String     @id @default(cuid())
+  groupId    String?
+  studentId  String?
+  teacherId  String
+  planDate   DateTime
+  title      String
+  notes      String?
+  status     PlanStatus @default(DRAFT)
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @updatedAt
+
+  group       Group?       @relation(fields: [groupId], references: [id])
+  student     User?        @relation("PlanStudent", fields: [studentId], references: [id])
+  teacher     User         @relation("PlanTeacher", fields: [teacherId], references: [id])
+  items       PlanItem[]
+  submissions Submission[]
+
+  @@index([planDate, studentId])
+  @@map("daily_plans")
+}
+
+model PlanItem {
+  id                 String       @id @default(cuid())
+  dailyPlanId        String
+  type               PlanItemType
+  surahStart         Int?
+  ayahStart          Int?
+  surahEnd           Int?
+  ayahEnd            Int?
+  targetPages        Float?
+  targetRepetitions  Int?
+  orderIndex         Int          @default(0)
+
+  dailyPlan   DailyPlan    @relation(fields: [dailyPlanId], references: [id], onDelete: Cascade)
+  submissions Submission[]
+
+  @@map("plan_items")
+}
+
+model Submission {
+  id               String           @id @default(cuid())
+  studentId        String
+  dailyPlanId      String?
+  planItemId       String?
+  submissionDate   DateTime
+  pagesRead        Float            @default(0)
+  repetitionCount  Int              @default(0)
+  notes            String?
+  status           SubmissionStatus @default(PENDING)
+  submittedAt      DateTime?
+  createdAt        DateTime         @default(now())
+  updatedAt        DateTime         @updatedAt
+
+  student   User              @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  dailyPlan DailyPlan?        @relation(fields: [dailyPlanId], references: [id])
+  planItem  PlanItem?         @relation(fields: [planItemId], references: [id])
+  audios    RecitationAudio[]
+  review    Review?
+
+  @@index([studentId, submissionDate])
+  @@map("submissions")
+}
+
+model RecitationAudio {
+  id              String   @id @default(cuid())
+  submissionId    String
+  fileUrl         String
+  durationSeconds Int?
+  fileSizeBytes   Int?
+  mimeType        String?
+  uploadedAt      DateTime @default(now())
+
+  submission Submission @relation(fields: [submissionId], references: [id], onDelete: Cascade)
+
+  @@map("recitation_audios")
+}
+
+model Review {
+  id           String         @id @default(cuid())
+  submissionId String         @unique
+  teacherId    String
+  decision     ReviewDecision
+  feedback     String?
+  reviewedAt   DateTime       @default(now())
+
+  submission Submission @relation(fields: [submissionId], references: [id], onDelete: Cascade)
+  teacher    User       @relation(fields: [teacherId], references: [id])
+
+  @@map("reviews")
+}
+
+model ProgressSnapshot {
+  id                    String   @id @default(cuid())
+  studentId             String
+  courseId              String?
+  totalPagesMemorized   Float    @default(0)
+  totalPagesRevised     Float    @default(0)
+  completionPercentage  Float    @default(0)
+  currentSurah          Int?
+  currentAyah           Int?
+  snapshotDate          DateTime
+  metadata              Json?
+
+  student User    @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  course  Course? @relation(fields: [courseId], references: [id])
+
+  @@index([studentId, snapshotDate])
+  @@map("progress_snapshots")
+}
+
+model Achievement {
+  id          String              @id @default(cuid())
+  code        String              @unique
+  title       String
+  description String?
+  icon        String?
+  category    AchievementCategory @default(MILESTONE)
+  threshold   Int?
+  sortOrder   Int                 @default(0)
+  criteria    Json?
+
+  userAchievements UserAchievement[]
+
+  @@map("achievements")
+}
+
+model UserAchievement {
+  id            String   @id @default(cuid())
+  userId        String
+  achievementId String
+  earnedAt      DateTime @default(now())
+
+  user        User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  achievement Achievement @relation(fields: [achievementId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, achievementId])
+  @@map("user_achievements")
+}
+
+model Streak {
+  studentId        String    @id
+  currentStreak    Int       @default(0)
+  longestStreak    Int       @default(0)
+  lastActivityDate DateTime?
+  streakStartedAt  DateTime?
+  totalActiveDays  Int       @default(0)
+
+  student User @relation(fields: [studentId], references: [id], onDelete: Cascade)
+
+  @@map("streaks")
+}
+
+/// GitHub-style contribution heatmap — one row per student per calendar day
+model StudentActivityDay {
+  id              String   @id @default(cuid())
+  studentId       String
+  activityDate    DateTime
+  intensity       Int      @default(0)
+  pagesRead       Float    @default(0)
+  repetitions     Int      @default(0)
+  submissionCount Int      @default(0)
+
+  student User @relation(fields: [studentId], references: [id], onDelete: Cascade)
+
+  @@unique([studentId, activityDate])
+  @@index([studentId, activityDate])
+  @@map("student_activity_days")
+}
+
+/// Visual Quran journey — progress through all 114 surahs
+model SurahProgress {
+  id              String              @id @default(cuid())
+  studentId       String
+  surahNumber     Int
+  status          SurahProgressStatus @default(NOT_STARTED)
+  ayahsMemorized  Int                 @default(0)
+  pagesEstimate   Float               @default(0)
+  lastPracticedAt DateTime?
+  completedAt     DateTime?
+
+  student User @relation(fields: [studentId], references: [id], onDelete: Cascade)
+
+  @@unique([studentId, surahNumber])
+  @@index([studentId, status])
+  @@map("surah_progress")
+}
+
+/// Cached group leaderboard (recomputed by cron or on submission)
+model GroupRankingEntry {
+  id            String        @id @default(cuid())
+  groupId       String
+  studentId     String
+  period        RankingPeriod
+  periodKey     String
+  rank          Int
+  score         Float
+  pagesRead     Float         @default(0)
+  repetitions   Int           @default(0)
+  activeDays    Int           @default(0)
+  currentStreak Int           @default(0)
+  computedAt    DateTime      @default(now())
+
+  group   Group @relation(fields: [groupId], references: [id], onDelete: Cascade)
+  student User  @relation(fields: [studentId], references: [id], onDelete: Cascade)
+
+  @@unique([groupId, studentId, period, periodKey])
+  @@index([groupId, period, periodKey, rank])
+  @@map("group_ranking_entries")
+}
+
+/// Monthly Student Champion — one winner per group per month
+model MonthlyChampion {
+  id        String   @id @default(cuid())
+  groupId   String
+  studentId String
+  year      Int
+  month     Int
+  score     Float
+  metrics   Json?
+  awardedAt DateTime @default(now())
+
+  group   Group @relation(fields: [groupId], references: [id], onDelete: Cascade)
+  student User  @relation(fields: [studentId], references: [id], onDelete: Cascade)
+
+  @@unique([groupId, year, month])
+  @@index([studentId])
+  @@map("monthly_champions")
+}
+
+model WeeklyReport {
+  id          String   @id @default(cuid())
+  studentId   String
+  parentId    String?
+  weekStart   DateTime
+  weekEnd     DateTime
+  summary     Json
+  generatedAt DateTime @default(now())
+
+  student User  @relation("ReportStudent", fields: [studentId], references: [id], onDelete: Cascade)
+  parent  User? @relation("ReportParent", fields: [parentId], references: [id])
+
+  @@map("weekly_reports")
+}
+
+model Notification {
+  id        String    @id @default(cuid())
+  userId    String
+  type      String
+  title     String
+  body      String?
+  readAt    DateTime?
+  createdAt DateTime  @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, readAt])
+  @@map("notifications")
+}
+
+model AuditLog {
+  id         String   @id @default(cuid())
+  actorId    String
+  action     String
+  entityType String
+  entityId   String?
+  metadata   Json?
+  createdAt  DateTime @default(now())
+
+  actor User @relation("AuditActor", fields: [actorId], references: [id])
+
+  @@map("audit_logs")
+}
