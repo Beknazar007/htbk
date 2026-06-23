@@ -18,6 +18,33 @@ npm run dev
 
 Браузерде: [http://localhost:3000](http://localhost:3000)
 
+## Башкаларга жөнөтүп текшертүү
+
+### Вариант A — Интернет шилтеме (WhatsApp аркылуу)
+
+1. [vercel.com](https://vercel.com) катталыңыз
+2. **Add New → Project** → GitHub: `Hyundai-Kyrgyzstan-Commercial`
+3. **Root Directory:** `apps/web` тандаңыз
+4. Deploy басыңыз → `https://....vercel.app` шилтемесин WhatsAppка жөнөтүңүз
+
+### Вариант B — Бир Wi-Fi (үйдө/офисте)
+
+```bash
+npm run dev
+npm run share
+```
+
+Чыгкан `http://192.168.x.x:3000` шилтемесин телефонго жөнөтүңүз (компьютер менен телефон бир Wi-Fiда болушу керек).
+
+### Вариант C — Убактылуу публичный шилтеме
+
+```bash
+npm run dev
+npm run share:public
+```
+
+Терминалда чыккан `https://....loca.lt` шилтемесин жөнөтүңүз.
+
 ## Production
 
 ```bash

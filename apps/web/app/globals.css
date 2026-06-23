@@ -188,7 +188,19 @@
   }
 
   .kuma-heading {
-    @apply text-2xl font-bold leading-tight xs:text-[1.65rem] sm:text-3xl md:text-4xl lg:text-[2.5rem] xl:text-5xl 2xl:text-5xl 3xl:text-6xl;
+    @apply text-balance break-words text-2xl font-bold leading-tight xs:text-[1.65rem] sm:text-3xl md:text-4xl lg:text-[2.5rem] xl:text-5xl 2xl:text-5xl 3xl:text-6xl;
+  }
+
+  @media (max-width: 374px) {
+    .kuma-heading {
+      font-size: 1.35rem;
+      line-height: 1.2;
+    }
+
+    .kuma-subheading {
+      font-size: 0.875rem;
+      line-height: 1.5;
+    }
   }
 
   @media (min-width: 2560px) {

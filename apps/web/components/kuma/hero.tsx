@@ -56,7 +56,7 @@ export function KumaHero() {
             </span>
           </ScrollReveal>
           <ScrollReveal immediate delay={100}>
-            <h1 className="mb-3 max-w-3xl text-[1.7rem] font-bold leading-[1.12] tracking-tight text-brand-navy xs:mb-4 xs:text-4xl sm:text-[2.35rem] md:text-[2.75rem] lg:text-5xl xl:text-[3.25rem]">
+            <h1 className="mb-3 max-w-3xl text-balance break-words text-[1.4rem] font-bold leading-[1.12] tracking-tight text-brand-navy xs:mb-4 xs:text-[1.7rem] sm:text-[2.35rem] md:text-[2.75rem] lg:text-5xl xl:text-[3.25rem]">
               {t("heroTitle")}
             </h1>
           </ScrollReveal>

@@ -8,7 +8,9 @@
     "dev": "npm run dev --workspace=@hyundai-kg/web",
     "build": "npm run build --workspace=@hyundai-kg/web",
     "start": "npm run start --workspace=@hyundai-kg/web",
-    "lint": "npm run lint --workspace=@hyundai-kg/web"
+    "lint": "npm run lint --workspace=@hyundai-kg/web",
+    "share": "node scripts/share-url.mjs",
+    "share:public": "npx localtunnel --port 3000"
   },
   "devDependencies": {
     "turbo": "^2.3.3",
