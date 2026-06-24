@@ -1,11 +1,12 @@
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import { SITE } from "@/lib/kuma/content/site";
+import { getSiteUrl } from "@/lib/kuma/site-url";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin", "cyrillic"], variable: "--font-inter" });
 
-const appUrl = process.env.NEXT_PUBLIC_APP_URL ?? SITE.domain;
+const appUrl = getSiteUrl();
 
 export const metadata: Metadata = {
   metadataBase: new URL(appUrl),

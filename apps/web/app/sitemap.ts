@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { SITE } from "@/lib/kuma/content/site";
+import { getSiteUrl } from "@/lib/kuma/site-url";
 import { getAllVehicleSlugs } from "@/lib/kuma/content/vehicles";
 import { getAllSuperstructureSlugs } from "@/lib/kuma/content/superstructures";
 import { getAllNewsSlugs } from "@/lib/kuma/content/news";
@@ -7,7 +7,7 @@ import { getAllNewsSlugs } from "@/lib/kuma/content/news";
 const BRAND_SLUGS = ["about", "distributor", "history", "mission", "why-hyundai", "contact"];
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const base = SITE.domain;
+  const base = getSiteUrl();
   const now = new Date();
 
   const staticPages = ["", "/leasing", "/fleet", "/service", "/parts", "/engine", "/news", "/contacts", "/superstructures"].map(

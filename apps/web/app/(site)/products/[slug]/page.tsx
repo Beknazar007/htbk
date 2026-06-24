@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { getVehicle, getAllVehicleSlugs } from "@/lib/kuma/content/vehicles";
 import { VehiclePageClient } from "@/components/kuma/vehicle-page";
 import { productJsonLd, breadcrumbJsonLd, buildHreflang } from "@/lib/kuma/seo";
-import { SITE } from "@/lib/kuma/content/site";
+import { getSiteUrl } from "@/lib/kuma/site-url";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -28,11 +28,12 @@ export default async function ProductPage({ params }: Props) {
   const vehicle = getVehicle(slug);
   if (!vehicle) return <div className="kuma-container py-32">Not found</div>;
 
+  const siteUrl = getSiteUrl();
   const schemas = [
     productJsonLd(vehicle.name.ru, vehicle.description.ru, vehicle.image, vehicle.price),
     breadcrumbJsonLd([
-      { name: "Главная", url: SITE.domain },
-      { name: vehicle.name.ru, url: `${SITE.domain}/products/${slug}` },
+      { name: "Главная", url: siteUrl },
+      { name: vehicle.name.ru, url: `${siteUrl}/products/${slug}` },
     ]),
   ];
 

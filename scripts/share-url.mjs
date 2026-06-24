@@ -1,5 +1,7 @@
 import os from "node:os";
 
+const PUBLIC_SITE_URL = process.env.PUBLIC_SITE_URL?.replace(/\/$/, "");
+
 /** Docker/WSL/Hyper-V virtual adapters — not reachable from a phone on Wi‑Fi */
 const VIRTUAL_PREFIXES = [
   "127.",
@@ -43,21 +45,42 @@ function getLanIp() {
     /ethernet|eth|en\d/i.test(name),
   );
   if (ethernet) return ethernet.address;
-  return candidates[0]?.address ?? "127.0.0.1";
+  return candidates[0]?.address ?? null;
 }
 
-const ip = getLanIp();
 const port = process.env.PORT ?? "3000";
+const lanIp = getLanIp();
 
 console.log("");
-console.log("=== Сайтты телефондон текшерүү ===");
+console.log("=== WhatsApp / Telegram үчүн шилтеме ===");
 console.log("");
-console.log("1) Бир Wi-Fi түйүнүндө (тез):");
-console.log(`   http://${ip}:${port}`);
-console.log("");
-console.log("2) Интернет аркылуу (ар кайсы жерден):");
-console.log("   npm run share:public");
-console.log("   же Vercel: https://vercel.com → Import GitHub repo");
-console.log("");
-console.log("Телефондо Chrome/Safari ачып, шилтемени жөнөтүңүз.");
-console.log("");
+
+if (PUBLIC_SITE_URL) {
+  console.log("✅ Жөнөтүңүз (бардык жерде иштейт):");
+  console.log(`   ${PUBLIC_SITE_URL}`);
+  console.log("");
+} else {
+  console.log("❌ Азыр онлайн шилтеме жок!");
+  console.log("");
+  console.log("   WhatsApp/Telegram'га ЖӨНӨТПӨҢҮЗ:");
+  console.log("   • localhost:3000");
+  console.log("   • 192.168.x.x:3000");
+  console.log("   • trycloudflare.com / loca.lt");
+  console.log("   • htbk.kg (сайт азыр ошол доменде жок)");
+  console.log("");
+  console.log("✅ Бир жолу деплой кылыңыз:");
+  console.log("   https://vercel.com/new");
+  console.log("   Репо: Hyundai-Kyrgyzstan-Commercial");
+  console.log("   Root Directory: apps/web");
+  console.log("");
+  console.log("   Deploy бүткөндөн кийин чыккан https://....vercel.app");
+  console.log("   шилтемесин жөнөтүңүз.");
+  console.log("");
+}
+
+if (lanIp) {
+  console.log("--- Тек компьютер иштеп турганда (убактылуу) ---");
+  console.log(`   http://${lanIp}:${port}  (бир Wi-Fi гана)`);
+  console.log(`   npm run share:public     (убактылуу туннель)`);
+  console.log("");
+}

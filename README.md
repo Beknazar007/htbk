@@ -18,19 +18,29 @@ npm run dev
 
 Браузерде: [http://localhost:3000](http://localhost:3000)
 
-## Онлайн деплой (башкаларга жөнөтүү)
+## Онлайн деплой (WhatsApp / Telegram үчүн)
 
-Сайтты интернетке чыгаруу үчүн **Vercel** (акысыз):
+**Маанилүү:** `localhost`, `192.168.x.x`, `trycloudflare.com` шилтемелерин жөнөтпөңүз — алар иштебейт.
 
-1. [vercel.com](https://vercel.com) катталыңыз (GitHub менен)
-2. **Add New → Project** → репо: `Hyundai-Kyrgyzstan-Commercial`
-3. **Root Directory:** `apps/web` тандаңыз
-4. **Deploy** басыңыз
-5. Чыккан шилтеме: `https://....vercel.app` — WhatsAppка жөнөтүңүз
+### 1-март: Vercel (сунушталат, акысыз)
 
-Жаңы өзгөртүүлөр GitHub'га push кылынгандан кийин Vercel автоматтык жаңырат.
+1. Ачыңыз: **https://vercel.com/new**
+2. GitHub менен катталыңыз
+3. Репо: **Hyundai-Kyrgyzstan-Commercial**
+4. **Root Directory:** `apps/web`
+5. **Deploy** басыңыз
+6. Чыккан шилтемени жөнөтүңүз: `https://hyundai-....vercel.app`
 
-CLI аркылуу: `npm run deploy` (алдын ала `npx vercel login`)
+Бул шилтеме телефондо, WhatsAppта, Telegramда иштейт.
+
+Deploy кийин Vercel → Settings → Environment Variables:
+`NEXT_PUBLIC_APP_URL` = `https://сиздин-vercel-url.vercel.app`
+
+### Шилтемени текшерүү
+
+```bash
+PUBLIC_SITE_URL=https://сиздин-сайт.vercel.app npm run share
+```
 
 ## Башкаларга жөнөтүп текшертүү (убактылуу)
 

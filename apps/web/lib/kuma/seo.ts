@@ -1,13 +1,15 @@
 import { SITE } from "./content/site";
+import { getSiteUrl } from "./site-url";
 import type { KumaLocale } from "./types";
 
 export function organizationJsonLd(locale: KumaLocale) {
+  const siteUrl = getSiteUrl();
   return {
     "@context": "https://schema.org",
     "@type": "Organization",
     name: SITE.name[locale],
-    url: SITE.domain,
-    logo: `${SITE.domain}/logo.png`,
+    url: siteUrl,
+    logo: `${siteUrl}/logo.png`,
     contactPoint: {
       "@type": "ContactPoint",
       telephone: SITE.phone,
@@ -20,12 +22,13 @@ export function organizationJsonLd(locale: KumaLocale) {
 }
 
 export function localBusinessJsonLd(locale: KumaLocale) {
+  const siteUrl = getSiteUrl();
   return {
     "@context": "https://schema.org",
     "@type": "AutoDealer",
     name: SITE.name[locale],
-    image: `${SITE.domain}/og-image.jpg`,
-    url: SITE.domain,
+    image: `${siteUrl}/images/hero/slide-gt8.png`,
+    url: siteUrl,
     telephone: SITE.phone,
     email: SITE.email,
     address: {
@@ -80,9 +83,10 @@ export function breadcrumbJsonLd(items: { name: string; url: string }[]) {
 }
 
 export function buildHreflang(path: string) {
+  const siteUrl = getSiteUrl();
   return {
-    "ru-KG": `${SITE.domain}${path}`,
-    "ky-KG": `${SITE.domain}${path}?lang=ky`,
-    "x-default": `${SITE.domain}${path}`,
+    "ru-KG": `${siteUrl}${path}`,
+    "ky-KG": `${siteUrl}${path}?lang=ky`,
+    "x-default": `${siteUrl}${path}`,
   };
 }

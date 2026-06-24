@@ -1,9 +1,9 @@
 import type { MetadataRoute } from "next";
-import { SITE } from "@/lib/kuma/content/site";
+import { getSiteUrl } from "@/lib/kuma/site-url";
 
 export default function robots(): MetadataRoute.Robots {
   return {
-    rules: { userAgent: "*", allow: "/", disallow: ["/admin/", "/teacher/", "/student/", "/parent/", "/login", "/register"] },
-    sitemap: `${SITE.domain}/sitemap.xml`,
+    rules: { userAgent: "*", allow: "/" },
+    sitemap: `${getSiteUrl()}/sitemap.xml`,
   };
 }
