@@ -10,7 +10,8 @@
     "start": "npm run start --workspace=@hyundai-kg/web",
     "lint": "npm run lint --workspace=@hyundai-kg/web",
     "share": "node scripts/share-url.mjs",
-    "share:public": "npx localtunnel --port 3000"
+    "share:public": "npx cloudflared tunnel --url http://localhost:3000",
+    "deploy": "npm run build && npx vercel deploy --cwd apps/web --prod"
   },
   "devDependencies": {
     "turbo": "^2.3.3",
