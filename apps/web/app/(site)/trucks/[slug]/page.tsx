@@ -1,5 +1,3 @@
-import { redirect } from "next/navigation";
-
 const SLUG_MAP: Record<string, string> = {
   "force-8000": "mighty-gt8",
   "titan-11000": "mighty-gt11",
@@ -11,8 +9,19 @@ const SLUG_MAP: Record<string, string> = {
 
 type Props = { params: Promise<{ slug: string }> };
 
+export function generateStaticParams() {
+  return Object.keys(SLUG_MAP).map((slug) => ({ slug }));
+}
+
 export default async function TruckDetailPage({ params }: Props) {
   const { slug } = await params;
   const product = SLUG_MAP[slug] ?? "mighty-gt8";
-  redirect(`/products/${product}`);
+  const target = `/products/${product}/`;
+
+  return (
+    <main className="kuma-container py-32 text-center">
+      <meta httpEquiv="refresh" content={`0;url=${target}`} />
+      <a href={target}>Өтүү →</a>
+    </main>
+  );
 }

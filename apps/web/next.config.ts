@@ -1,16 +1,15 @@
 import path from "path";
 import type { NextConfig } from "next";
 
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
 const nextConfig: NextConfig = {
+  output: "export",
   outputFileTracingRoot: path.join(__dirname, "../../"),
-  experimental: {
-    serverActions: {
-      bodySizeLimit: "10mb",
-    },
-  },
-  async redirects() {
-    return [{ source: "/about", destination: "/brand/about", permanent: false }];
-  },
+  basePath,
+  assetPrefix: basePath ? `${basePath}/` : undefined,
+  images: { unoptimized: true },
+  trailingSlash: true,
 };
 
 export default nextConfig;

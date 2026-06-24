@@ -1,6 +1,8 @@
 import os from "node:os";
 
-const PUBLIC_SITE_URL = process.env.PUBLIC_SITE_URL?.replace(/\/$/, "");
+const PUBLIC_SITE_URL =
+  process.env.PUBLIC_SITE_URL?.replace(/\/$/, "") ??
+  "https://nurdunovkurmanbek-ai.github.io/Hyundai-Kyrgyzstan-Commercial";
 
 /** Docker/WSL/Hyper-V virtual adapters — not reachable from a phone on Wi‑Fi */
 const VIRTUAL_PREFIXES = [

@@ -4,6 +4,8 @@ import { getAllVehicleSlugs } from "@/lib/kuma/content/vehicles";
 import { getAllSuperstructureSlugs } from "@/lib/kuma/content/superstructures";
 import { getAllNewsSlugs } from "@/lib/kuma/content/news";
 
+export const dynamic = "force-static";
+
 const BRAND_SLUGS = ["about", "distributor", "history", "mission", "why-hyundai", "contact"];
 
 export default function sitemap(): MetadataRoute.Sitemap {
