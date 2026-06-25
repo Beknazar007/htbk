@@ -1,18 +1,24 @@
 import {
   GALLERY_IMAGES,
+  MODEL_HERO_IMAGES,
   MODEL_IMAGES,
   SECTION_BANNERS,
   SITE_IMAGES,
 } from "./site-images";
+import { MEDIA } from "./media";
 
-/** Premium truck imagery — local Hyundai Mighty assets */
+/** Premium truck imagery — distinct photos per model */
 export const IMAGES = {
   hero: SITE_IMAGES.gt8,
   heroMobile: SITE_IMAGES.gt8,
   gt5: MODEL_IMAGES.gt5,
+  gt5Hero: MODEL_HERO_IMAGES.gt5,
   gt8: MODEL_IMAGES.gt8,
+  gt8Hero: MODEL_HERO_IMAGES.gt8,
   gt10: MODEL_IMAGES.gt10,
+  gt10Hero: MODEL_HERO_IMAGES.gt10,
   gt12: MODEL_IMAGES.gt12,
+  gt12Hero: MODEL_HERO_IMAGES.gt12,
   gallery1: GALLERY_IMAGES[0].src,
   gallery2: GALLERY_IMAGES[1].src,
   gallery3: GALLERY_IMAGES[2].src,
@@ -25,12 +31,12 @@ export const IMAGES = {
   dumpHero: SITE_IMAGES.gt11,
   van: SITE_IMAGES.electric,
   vanHero: SITE_IMAGES.electric,
-  flatbed: SITE_IMAGES.gt8,
-  flatbedHero: SITE_IMAGES.gt8,
+  flatbed: SITE_IMAGES.gt11,
+  flatbedHero: SITE_IMAGES.gt11,
   bus: SITE_IMAGES.fleet,
   busHero: SITE_IMAGES.fleet,
-  commercial: SITE_IMAGES.gt8,
-  commercialHero: SITE_IMAGES.gt8,
+  commercial: MEDIA.modelGt8,
+  commercialHero: MEDIA.modelGt8,
   leasing: SECTION_BANNERS.leasing,
   superSemiTrailer: SITE_IMAGES.fleet,
   superDump: SITE_IMAGES.gt11,

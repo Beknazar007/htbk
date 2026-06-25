@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { BrandPageClient } from "@/components/kuma/brand-page";
 import { buildHreflang } from "@/lib/kuma/seo";
 
-const SLUGS = ["about", "distributor", "history", "mission", "why-hyundai", "contact"];
+const SLUGS = ["hyundai-cv", "design", "technologies", "comfort", "history", "about", "distributor", "mission", "why-hyundai", "contact"];
 
 type Props = { params: Promise<{ slug: string }> };
 

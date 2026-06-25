@@ -29,20 +29,16 @@ export const SITE = {
 } as const;
 
 export const NAV_ITEMS = [
-  { key: "navBrand", href: "/brand/about", mega: "brand" as const },
-  { key: "navProducts", href: "/products/mighty-gt8", mega: "products" as const },
-  { key: "navSuperstructures", href: "/superstructures", mega: null },
-  { key: "navLeasing", href: "/leasing", mega: null },
-  { key: "navService", href: "/service", mega: null },
+  { key: "navCompany", href: "/company", mega: null },
+  { key: "navBrand", href: "/brand/hyundai-cv", mega: "brand" as const },
+  { key: "navProducts", href: "/products", mega: "products" as const },
   { key: "navNews", href: "/news", mega: null },
-  { key: "navContacts", href: "/contacts", mega: null },
 ] as const;
 
 export const BRAND_LINKS = [
-  { slug: "about", key: "brandAbout" },
-  { slug: "distributor", key: "brandDistributor" },
+  { slug: "hyundai-cv", key: "brandHyundaiCv" },
+  { slug: "design", key: "brandDesign" },
+  { slug: "technologies", key: "brandTechnologies" },
+  { slug: "comfort", key: "brandComfort" },
   { slug: "history", key: "brandHistory" },
-  { slug: "mission", key: "brandMission" },
-  { slug: "why-hyundai", key: "brandWhy" },
-  { slug: "contact", key: "brandContact" },
 ] as const;

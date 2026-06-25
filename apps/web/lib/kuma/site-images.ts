@@ -1,6 +1,7 @@
-/** Local Hyundai Mighty imagery — unified corporate asset library */
-const V = "6";
+/** Local Hyundai imagery — unified corporate asset library */
+import { MEDIA } from "./media";
 
+const V = "8";
 const p = (file: string) => `/images/hero/${file}?v=${V}`;
 
 export const SITE_IMAGES = {
@@ -10,18 +11,20 @@ export const SITE_IMAGES = {
   fleet: p("slide-fleet.png"),
   showcase: p("slide-showcase.png"),
   logistics: p("slide-logistics.png"),
+  xcientBridge: p("xcient-hero-bridge.png"),
+  xcientProfile: p("xcient-hero-profile.png"),
+  xcientFleet: p("xcient-hero-fleet.png"),
 } as const;
 
-/** Clean slides without baked-in marketing text — best for hero */
+/** Wide XCIENT Fuel Cell shots — hero «Сила, созданная для Кыргызстана» */
 export const HERO_SLIDES = [
-  { src: SITE_IMAGES.gt8, alt: "Hyundai Mighty GT8" },
-  { src: SITE_IMAGES.gt11, alt: "Hyundai Mighty GT11" },
-  { src: SITE_IMAGES.electric, alt: "Hyundai Mighty Electric" },
-  { src: SITE_IMAGES.fleet, alt: "Hyundai Mighty fleet" },
+  { src: SITE_IMAGES.xcientBridge, alt: "Hyundai XCIENT Fuel Cell" },
+  { src: SITE_IMAGES.xcientFleet, alt: "Hyundai XCIENT Fuel Cell fleet" },
+  { src: SITE_IMAGES.xcientProfile, alt: "Hyundai XCIENT Fuel Cell tractor" },
 ] as const;
 
 export const SECTION_BANNERS = {
-  models: SITE_IMAGES.fleet,
+  models: MEDIA.busLineup,
   stock: SITE_IMAGES.gt8,
   electric: SITE_IMAGES.electric,
   gallery: SITE_IMAGES.gt11,
@@ -36,27 +39,31 @@ export const SECTION_BANNERS = {
   cta: SITE_IMAGES.gt11,
 } as const;
 
-/** Model slug → matching truck photo */
+/** Model slug → distinct product photo (no duplicate hero crops) */
 export const MODEL_IMAGES: Record<string, string> = {
-  gt5: SITE_IMAGES.gt8,
-  gt8: SITE_IMAGES.gt8,
-  gt10: SITE_IMAGES.gt11,
-  gt12: SITE_IMAGES.fleet,
+  gt5: MEDIA.modelGt5,
+  gt8: MEDIA.modelGt8,
+  gt10: MEDIA.modelGt10,
+  gt12: MEDIA.modelGt12,
 };
 
+export const MODEL_HERO_IMAGES: Record<string, string> = {
+  gt5: MEDIA.modelGt5,
+  gt8: MEDIA.modelGt8,
+  gt10: MEDIA.garbageAlt,
+  gt12: MEDIA.heroXcientBridge,
+};
 export const STOCK_IMAGES: Record<string, string> = {
-  GT8: SITE_IMAGES.gt8,
+  GT8: MEDIA.modelGt8,
   GT11: SITE_IMAGES.gt11,
   Electric: SITE_IMAGES.electric,
 };
-
 export const GALLERY_IMAGES = [
-  { src: SITE_IMAGES.gt8, alt: "Hyundai Mighty GT8" },
-  { src: SITE_IMAGES.gt11, alt: "Hyundai Mighty GT11" },
+  { src: MEDIA.modelGt5, alt: "Hyundai HD72" },
+  { src: MEDIA.modelGt8, alt: "Hyundai Mighty GT8" },
   { src: SITE_IMAGES.electric, alt: "Hyundai Mighty Electric" },
-  { src: SITE_IMAGES.fleet, alt: "Hyundai коммерциялык парк" },
+  { src: MEDIA.modelGt12, alt: "Hyundai XCIENT Fuel Cell" },
 ] as const;
-
 export const SUPERSTRUCTURE_IMAGES = [
   SITE_IMAGES.gt8,
   SITE_IMAGES.gt11,

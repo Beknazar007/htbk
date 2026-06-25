@@ -72,11 +72,23 @@ export function NewsArticlePage({ slug }: { slug: string }) {
               className="mb-6"
             />
             <time className="text-sm text-kuma-500">{article.date}</time>
+            {article.category && (
+              <span className="ml-3 text-sm font-semibold uppercase tracking-wide text-kuma-600">
+                {article.category[locale]}
+              </span>
+            )}
             <h1 className="mt-2 text-3xl font-bold text-kuma-900 sm:text-4xl">
               {article.title[locale]}
             </h1>
             <div className="prose prose-gray mt-8 max-w-none">
               <p className="text-lg leading-relaxed text-gray-700">{article.body[locale]}</p>
+              {article.highlights && (
+                <ul className="mt-6 space-y-2">
+                  {article.highlights[locale].map((item) => (
+                    <li key={item} className="text-gray-700">{item}</li>
+                  ))}
+                </ul>
+              )}
             </div>
           </div>
         </div>

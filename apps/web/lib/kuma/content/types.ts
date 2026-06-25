@@ -50,10 +50,12 @@ export interface SuperstructureItem {
 export interface NewsArticle {
   slug: string;
   date: string;
+  category?: LocalizedText;
   image: string;
   title: LocalizedText;
   excerpt: LocalizedText;
   body: LocalizedText;
+  highlights?: Record<KumaLocale, string[]>;
 }
 
 export interface BrandPageContent {

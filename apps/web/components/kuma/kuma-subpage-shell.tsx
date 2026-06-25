@@ -13,9 +13,9 @@ export function KumaSubpageShell({ children }: { children: ReactNode }) {
   return (
     <>
       <ScrollFix />
-      <div className="kuma-page-mobile min-h-screen overflow-x-hidden bg-white font-sans antialiased">
+      <div className="kuma-page-mobile kuma-site min-h-screen overflow-x-hidden bg-white font-sans antialiased">
         <KumaHeader forceSolid />
-        <main className="pt-14 xs:pt-16 md:pt-[4.25rem] lg:pt-[4.5rem] 3xl:pt-20">{children}</main>
+        <main className="pt-[calc(3.5rem+env(safe-area-inset-top))] xs:pt-[calc(4rem+env(safe-area-inset-top))] md:pt-[calc(4.25rem+env(safe-area-inset-top))] lg:pt-[calc(4.5rem+env(safe-area-inset-top))] 3xl:pt-[calc(5rem+env(safe-area-inset-top))]">{children}</main>
         <PageCtaBanner />
         <KumaFooter />
         <MobileStickyBar />

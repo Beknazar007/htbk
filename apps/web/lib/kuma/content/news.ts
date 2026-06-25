@@ -1,12 +1,43 @@
-import { IMAGES } from "../constants";
+import { MEDIA } from "../media";
 import type { NewsArticle } from "./types";
 
 /** CMS: News collection */
 export const NEWS: NewsArticle[] = [
   {
+    slug: "xcient-fuel-cell-act-expo-2025",
+    date: "2025-04-29",
+    category: { ru: "Релизы", ky: "Релиздер" },
+    image: MEDIA.newsXcient,
+    title: {
+      ru: "Компания Hyundai Motor представила новый большегрузный автомобиль XCIENT Fuel Cell на выставке ACT Expo 2025",
+      ky: "Hyundai Motor компаниясы ACT Expo 2025 көргөмөсүндө жаңы XCIENT Fuel Cell чоң жүк ташуучусун таңшады",
+    },
+    excerpt: {
+      ru: "Новый XCIENT Fuel Cell с усовершенствованной водородной силовой установкой и системой ADAS.",
+      ky: "Жакшыртылган суу тутун кубаттуулук орнотуусу жана ADAS системасы менен жаңы XCIENT Fuel Cell.",
+    },
+    body: {
+      ru: "Компания Hyundai Motor представила новый грузовой автомобиль XCIENT Fuel Cell с усовершенствованной водородной топливной системой на выставке ACT Expo 2025 в Анахайме, Калифорния.",
+      ky: "Hyundai Motor компаниясы Анахайм, Калифорниядагы ACT Expo 2025 көргөмөсүндө жакшыртылган суу тутун отун системасы менен жаңы XCIENT Fuel Cell жүк ташуучусун таңшады.",
+    },
+    highlights: {
+      ru: [
+        "Новый XCIENT Fuel Cell оснащён усовершенствованной водородной силовой установкой.",
+        "Применена новая система Advanced Driver Assistance System.",
+        "Повышены безопасность, эффективность и запас хода автомобиля.",
+      ],
+      ky: [
+        "Жаңы XCIENT Fuel Cell жакшыртылган суу тутун кубаттуулук орнотуусу менен жабдылган.",
+        "Жаңы Advanced Driver Assistance System колдонулган.",
+        "Коопсуздук, натыйжалуулук жана жүрүү аралыгы жогорулатылды.",
+      ],
+    },
+  },
+  {
     slug: "mighty-electric-launch-kg",
     date: "2026-03-15",
-    image: IMAGES.van,
+    category: { ru: "Новости", ky: "Жаңылыктар" },
+    image: MEDIA.tractorXcient,
     title: {
       ru: "Электрический Mighty официально представлен в Кыргызстане",
       ky: "Электрдик Mighty Кыргызстанда расмий таңшалды",
@@ -23,7 +54,8 @@ export const NEWS: NewsArticle[] = [
   {
     slug: "service-center-expansion",
     date: "2026-02-20",
-    image: IMAGES.commercial,
+    category: { ru: "Сервис", ky: "Сервис" },
+    image: MEDIA.truckHd72,
     title: {
       ru: "Расширение сервисной сети HTBK",
       ky: "HTBK сервис тармагын кеңейтүү",
@@ -40,7 +72,8 @@ export const NEWS: NewsArticle[] = [
   {
     slug: "leasing-program-2026",
     date: "2026-01-10",
-    image: IMAGES.leasing,
+    category: { ru: "Лизинг", ky: "Лизинг" },
+    image: MEDIA.craneHd170,
     title: {
       ru: "Новая лизинговая программа 2026",
       ky: "2026-жылдын жаңы лизинг программасы",
@@ -57,7 +90,8 @@ export const NEWS: NewsArticle[] = [
   {
     slug: "hyundai-global-partnership",
     date: "2025-12-05",
-    image: IMAGES.tractor,
+    category: { ru: "Компания", ky: "Компания" },
+    image: MEDIA.busLineup,
     title: {
       ru: "Подтверждён статус официального дистрибьютора",
       ky: "Расмiy дистрибьютор статусу ырасталды",

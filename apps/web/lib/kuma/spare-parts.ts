@@ -1,4 +1,4 @@
-import { SITE_IMAGES } from "./site-images";
+import { MEDIA } from "./media";
 
 export type SparePartCategory =
   | "filters"
@@ -32,12 +32,12 @@ export const SPARE_PART_CATEGORIES: {
 ];
 
 const PART_IMG = {
-  filter: SITE_IMAGES.gt8,
-  brake: SITE_IMAGES.gt11,
-  engine: SITE_IMAGES.gt8,
-  suspension: SITE_IMAGES.logistics,
-  oil: SITE_IMAGES.logistics,
-  accessory: SITE_IMAGES.fleet,
+  filter: MEDIA.engine,
+  brake: MEDIA.truckHd72,
+  engine: MEDIA.engine,
+  suspension: MEDIA.chassis1,
+  oil: MEDIA.engine,
+  accessory: MEDIA.cabSuper,
 };
 
 export const SPARE_PARTS: SparePart[] = [

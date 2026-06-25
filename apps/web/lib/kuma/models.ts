@@ -8,7 +8,7 @@ export const TRUCK_MODELS: TruckModel[] = [
     category: "commercial",
     categoryKey: "categoryCommercial",
     image: IMAGES.gt5,
-    heroImage: IMAGES.gt5,
+    heroImage: IMAGES.gt5Hero,
     price: 3200000,
     shortSpecs: {
       payload: "5 000 кг",
@@ -41,7 +41,7 @@ export const TRUCK_MODELS: TruckModel[] = [
     category: "flatbed",
     categoryKey: "categoryFlatbed",
     image: IMAGES.gt8,
-    heroImage: IMAGES.gt8,
+    heroImage: IMAGES.gt8Hero,
     price: 4500000,
     shortSpecs: {
       payload: "8 000 кг",
@@ -74,7 +74,7 @@ export const TRUCK_MODELS: TruckModel[] = [
     category: "dump",
     categoryKey: "categoryDump",
     image: IMAGES.gt10,
-    heroImage: IMAGES.gt10,
+    heroImage: IMAGES.gt10Hero,
     price: 5800000,
     shortSpecs: {
       payload: "10 000 кг",
@@ -107,7 +107,7 @@ export const TRUCK_MODELS: TruckModel[] = [
     category: "tractor",
     categoryKey: "categoryTractor",
     image: IMAGES.gt12,
-    heroImage: IMAGES.gt12,
+    heroImage: IMAGES.gt12Hero,
     price: 7200000,
     shortSpecs: {
       payload: "12 000 кг",

@@ -7,6 +7,7 @@ import {
   COMPARE_MODELS,
   COMPARISON_ROWS,
   type CompareModelId,
+  type ComparisonRow,
 } from "@/lib/kuma/comparison-data";
 import { SECTION_BANNERS } from "@/lib/kuma/site-images";
 import { buildWhatsAppUrl } from "@/lib/kuma/constants";
@@ -17,6 +18,12 @@ const MODEL_HEADER_CLASS: Record<CompareModelId, string> = {
   gt8: "bg-brand-navy text-white",
   gt11: "bg-brand-accent text-white",
   electric: "bg-brand-accent-light text-brand-navy",
+};
+
+const MODEL_VALUE_KEY: Record<CompareModelId, keyof ComparisonRow> = {
+  gt8: "gt8Key",
+  gt11: "gt11Key",
+  electric: "electricKey",
 };
 
 export function ComparisonSection() {
@@ -39,8 +46,28 @@ export function ComparisonSection() {
         />
 
         <ScrollReveal delay={100}>
-          <div className="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-lg 3xl:rounded-3xl">
-            <div className="overflow-x-auto">
+          {/* Mobile: stacked model cards */}
+          <div className="space-y-4 md:hidden">
+            {COMPARE_MODELS.map(({ id, nameKey }) => (
+              <div key={id} className="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-md">
+                <div className={cn("px-4 py-3 text-center text-base font-bold", MODEL_HEADER_CLASS[id])}>
+                  {t(nameKey)}
+                </div>
+                <dl className="divide-y divide-gray-100">
+                  {COMPARISON_ROWS.map((row) => (
+                    <div key={row.paramKey} className="flex items-start justify-between gap-3 px-4 py-3">
+                      <dt className="text-sm font-medium text-brand-navy">{t(row.paramKey)}</dt>
+                      <dd className="max-w-[55%] text-right text-sm text-gray-700">{t(row[MODEL_VALUE_KEY[id]])}</dd>
+                    </div>
+                  ))}
+                </dl>
+              </div>
+            ))}
+          </div>
+
+          {/* Tablet / desktop: table */}
+          <div className="hidden overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-lg md:block 3xl:rounded-3xl">
+            <div className="kuma-table-scroll">
               <table className="w-full min-w-[640px] border-collapse text-left">
                 <thead>
                   <tr>

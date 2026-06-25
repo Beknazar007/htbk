@@ -10,8 +10,8 @@ export function SiteFooter() {
   const { t, locale } = useKuma();
 
   return (
-    <footer className="bg-kuma-900 text-white">
-      <div className="kuma-container py-16 lg:py-20">
+    <footer className="bg-kuma-900 text-white kuma-safe-bottom">
+      <div className="kuma-container py-12 sm:py-16 lg:py-20">
         <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
           <div>
             <div className="mb-4 text-xl font-bold">HTBK</div>

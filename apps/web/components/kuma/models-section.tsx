@@ -31,6 +31,7 @@ export function KumaModels() {
                   <KumaImage
                     src={truck.image}
                     alt={truck.name}
+                    fit="contain"
                     className="aspect-[16/10] w-full"
                   />
                   <span className="absolute left-3 top-3 rounded-full bg-brand-accent px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-white xs:text-xs">

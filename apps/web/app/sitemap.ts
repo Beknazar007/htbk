@@ -4,15 +4,17 @@ import { getAllVehicleSlugs } from "@/lib/kuma/content/vehicles";
 import { getAllSuperstructureSlugs } from "@/lib/kuma/content/superstructures";
 import { getAllNewsSlugs } from "@/lib/kuma/content/news";
 
+import { getAllEquipmentSlugs } from "@/lib/kuma/content/equipment";
+
 export const dynamic = "force-static";
 
-const BRAND_SLUGS = ["about", "distributor", "history", "mission", "why-hyundai", "contact"];
+const BRAND_SLUGS = ["hyundai-cv", "design", "technologies", "comfort", "history"];
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = getSiteUrl();
   const now = new Date();
 
-  const staticPages = ["", "/leasing", "/fleet", "/service", "/parts", "/engine", "/news", "/contacts", "/superstructures"].map(
+  const staticPages = ["", "/company", "/products", "/leasing", "/fleet", "/service", "/parts", "/engine", "/news", "/contacts", "/superstructures"].map(
     (path) => ({
       url: `${base}${path}`,
       lastModified: now,
@@ -46,6 +48,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: now,
       changeFrequency: "monthly" as const,
       priority: 0.6,
+    })),
+    ...getAllEquipmentSlugs().map((slug) => ({
+      url: `${base}/equipment/${slug}`,
+      lastModified: now,
+      changeFrequency: "monthly" as const,
+      priority: 0.85,
     })),
   ];
 }

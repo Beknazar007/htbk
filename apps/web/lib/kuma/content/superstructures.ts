@@ -45,7 +45,7 @@ export const SUPERSTRUCTURES: SuperstructureItem[] = [
   {
     slug: "crane",
     nameKey: "bodyCrane",
-    image: IMAGES.superManipulator,
+    image: "/images/products/crane/hd170-1000.png",
     description: {
       ru: "Кран-манипулятор для погрузочно-разгрузочных работ на месте.",
       ky: "Жerде жүк түшүрүү-көтөрүү иштери үчүн манипулятор.",
@@ -71,7 +71,7 @@ export const SUPERSTRUCTURES: SuperstructureItem[] = [
   {
     slug: "garbage",
     nameKey: "bodyGarbage",
-    image: IMAGES.superGarbage,
+    image: "/images/products/special/garbage-hd260.png",
     description: {
       ru: "Мусоровоз для коммунальных служб и вывоза ТБО.",
       ky: "Коммуналдык кызматтар үчүн мусоровоз.",
@@ -84,7 +84,7 @@ export const SUPERSTRUCTURES: SuperstructureItem[] = [
   {
     slug: "tow",
     nameKey: "bodyTow",
-    image: IMAGES.superSemiTrailer,
+    image: "/images/products/special/wrecker-hd72.png",
     description: {
       ru: "Эвакуатор для транспортировки неисправных автомобилей.",
       ky: "Бuzulgan унааларды ташуу үчүн эвакуатор.",

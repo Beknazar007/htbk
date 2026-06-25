@@ -27,7 +27,7 @@ export function KumaHero() {
   return (
     <section
       id="home"
-      className="relative min-h-[100dvh] overflow-hidden bg-slate-100 pt-14 xs:pt-16 md:pt-[4.25rem] lg:pt-[4.5rem] 3xl:pt-20"
+      className="relative min-h-[100svh] overflow-hidden bg-slate-100 pt-[calc(3.5rem+env(safe-area-inset-top))] xs:pt-[calc(4rem+env(safe-area-inset-top))] md:pt-[calc(4.25rem+env(safe-area-inset-top))] lg:pt-[calc(4.5rem+env(safe-area-inset-top))] 3xl:pt-[calc(5rem+env(safe-area-inset-top))]"
     >
       {/* Slideshow — full bleed, trucks anchored at bottom */}
       <div className="absolute inset-0 bg-slate-100">
@@ -49,14 +49,14 @@ export function KumaHero() {
 
       {/* Top text band — integrated with image, does not cover trucks */}
       <div className="relative z-10 flex min-h-[calc(100dvh-3.5rem)] flex-col md:min-h-[calc(100vh-4.25rem)]">
-        <div className="bg-gradient-to-b from-white from-0% via-white/97 via-45% to-transparent to-70% px-5 pb-10 pt-3 xs:px-7 xs:pb-12 xs:pt-4 md:px-10 md:pb-14 lg:px-12 lg:pb-16">
+        <div className="bg-gradient-to-b from-white from-0% via-white/97 via-40% to-transparent to-[58%] xs:via-45% xs:to-[62%] md:via-45% md:to-70% px-4 pb-8 pt-2 xs:px-7 xs:pb-12 xs:pt-4 md:px-10 md:pb-14 lg:px-12 lg:pb-16">
           <ScrollReveal immediate>
             <span className="kuma-label mb-3 inline-block rounded-full border border-brand-accent/25 bg-brand-accent/10 px-4 py-1.5 text-brand-accent">
               {t("siteTagline")}
             </span>
           </ScrollReveal>
           <ScrollReveal immediate delay={100}>
-            <h1 className="mb-3 max-w-3xl text-balance break-words text-[1.4rem] font-bold leading-[1.12] tracking-tight text-brand-navy xs:mb-4 xs:text-[1.7rem] sm:text-[2.35rem] md:text-[2.75rem] lg:text-5xl xl:text-[3.25rem]">
+            <h1 className="mb-3 max-w-3xl text-balance break-words text-[1.25rem] font-bold leading-[1.12] tracking-tight text-brand-navy xs:mb-4 xs:text-[1.7rem] sm:text-[2.35rem] md:text-[2.75rem] lg:text-5xl xl:text-[3.25rem]">
               {t("heroTitle")}
             </h1>
           </ScrollReveal>
