@@ -31,8 +31,8 @@ jobs:
       - name: Build static site
         run: npm run build --workspace=@hyundai-kg/web
         env:
-          NEXT_PUBLIC_BASE_PATH: /Hyundai-Kyrgyzstan-Commercial
-          NEXT_PUBLIC_APP_URL: https://nurdunovkurmanbek-ai.github.io/Hyundai-Kyrgyzstan-Commercial
+          NEXT_PUBLIC_BASE_PATH: /${{ github.event.repository.name }}
+          NEXT_PUBLIC_APP_URL: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
