@@ -1,0 +1,1 @@
+(self.webpackChunk_N_E=self.webpackChunk_N_E||[]).push([[750],{2360:(e,s,t)=>{Promise.resolve().then(t.bind(t,6980))},6980:(e,s,t)=>{"use strict";t.d(s,{KumaSiteLayout:()=>a});var u=t(4568),n=t(9107);function a(e){let{children:s}=e;return(0,u.jsx)(n.w,{defaultLocale:"ky",children:s})}}},e=>{e.O(0,[107,587,18,358],()=>e(e.s=2360)),_N_E=e.O()}]);
