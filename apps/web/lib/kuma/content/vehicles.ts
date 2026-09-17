@@ -1,4 +1,5 @@
 import { IMAGES } from "../constants";
+import { withBasePath } from "../base-path";
 import type { Vehicle } from "./types";
 
 /** CMS: Vehicle collection — primary Mighty GT lineup */
@@ -12,7 +13,7 @@ export const VEHICLES: Vehicle[] = [
     heroImage: IMAGES.commercialHero,
     price: 4200000,
     electric: false,
-    pdfPath: "/catalogs/mighty-gt8.pdf",
+    pdfPath: withBasePath("/catalogs/mighty-gt8.pdf"),
     description: {
       ru: "Компактный и манёвренный среднетоннажный грузовик для городской и региональной логистики.",
       ky: "Шаардык жана регионалдык логистика үчүн ыңгайлуу орто жүк ташуучу.",
@@ -56,7 +57,7 @@ export const VEHICLES: Vehicle[] = [
     heroImage: IMAGES.flatbedHero,
     price: 5800000,
     electric: false,
-    pdfPath: "/catalogs/mighty-gt11.pdf",
+    pdfPath: withBasePath("/catalogs/mighty-gt11.pdf"),
     description: {
       ru: "Универсальный грузовик повышенной грузоподъёмности для строительства, дистрибуции и коммунального сектора.",
       ky: "Курулуш, дистрибуция жана коммуналдык сектор үчүн универсалдуу жүк ташуучу.",
@@ -100,7 +101,7 @@ export const VEHICLES: Vehicle[] = [
     heroImage: IMAGES.vanHero,
     price: 8900000,
     electric: true,
-    pdfPath: "/catalogs/mighty-electric.pdf",
+    pdfPath: withBasePath("/catalogs/mighty-electric.pdf"),
     description: {
       ru: "Бесшумный и экологичный электрогрузовик для «последней мили» и городских маршрутов.",
       ky: "Шаар ичиндеги маршруттар үчүн экологичдик электр жүк ташуycу.",

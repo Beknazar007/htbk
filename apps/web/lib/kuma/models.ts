@@ -1,4 +1,5 @@
 import { IMAGES } from "./constants";
+import { withBasePath } from "./base-path";
 import type { TruckModel } from "./types";
 
 export const TRUCK_MODELS: TruckModel[] = [
@@ -33,7 +34,7 @@ export const TRUCK_MODELS: TruckModel[] = [
       ru: "GT5 — оптимальная модель для городских и региональных доставок. Компактный, экономичный и надёжный.",
     },
     superstructures: [],
-    pdfPath: "/catalogs/gt5.pdf",
+    pdfPath: withBasePath("/catalogs/gt5.pdf"),
   },
   {
     slug: "gt8",
@@ -66,7 +67,7 @@ export const TRUCK_MODELS: TruckModel[] = [
       ru: "GT8 — универсальный грузовик. Популярная модель в Кыргызстане с прочным шасси и высокой проходимостью.",
     },
     superstructures: [],
-    pdfPath: "/catalogs/gt8.pdf",
+    pdfPath: withBasePath("/catalogs/gt8.pdf"),
   },
   {
     slug: "gt10",
@@ -99,7 +100,7 @@ export const TRUCK_MODELS: TruckModel[] = [
       ru: "GT10 — для строительства, карьеров и инфраструктурных работ. Мощный двигатель и система безопасности ABS.",
     },
     superstructures: [],
-    pdfPath: "/catalogs/gt10.pdf",
+    pdfPath: withBasePath("/catalogs/gt10.pdf"),
   },
   {
     slug: "gt12",
@@ -132,7 +133,7 @@ export const TRUCK_MODELS: TruckModel[] = [
       ru: "GT12 — флагманская модель для тяжёлых условий и дальних перевозок. Просторная кабина, современная безопасность и высокая грузоподъёмность.",
     },
     superstructures: [],
-    pdfPath: "/catalogs/gt12.pdf",
+    pdfPath: withBasePath("/catalogs/gt12.pdf"),
   },
 ];
 

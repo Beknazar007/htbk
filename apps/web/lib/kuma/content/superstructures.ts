@@ -1,4 +1,5 @@
 import { IMAGES } from "../constants";
+import { MEDIA } from "../media";
 import type { SuperstructureItem } from "./types";
 
 /** CMS: Superstructure collection — 15 body types */
@@ -45,7 +46,7 @@ export const SUPERSTRUCTURES: SuperstructureItem[] = [
   {
     slug: "crane",
     nameKey: "bodyCrane",
-    image: "/images/products/crane/hd170-1000.png",
+    image: MEDIA.craneHd170,
     description: {
       ru: "Кран-манипулятор для погрузочно-разгрузочных работ на месте.",
       ky: "Жerде жүк түшүрүү-көтөрүү иштери үчүн манипулятор.",
@@ -71,7 +72,7 @@ export const SUPERSTRUCTURES: SuperstructureItem[] = [
   {
     slug: "garbage",
     nameKey: "bodyGarbage",
-    image: "/images/products/special/garbage-hd260.png",
+    image: MEDIA.garbage,
     description: {
       ru: "Мусоровоз для коммунальных служб и вывоза ТБО.",
       ky: "Коммуналдык кызматтар үчүн мусоровоз.",
@@ -84,7 +85,7 @@ export const SUPERSTRUCTURES: SuperstructureItem[] = [
   {
     slug: "tow",
     nameKey: "bodyTow",
-    image: "/images/products/special/wrecker-hd72.png",
+    image: MEDIA.wreckerHd72,
     description: {
       ru: "Эвакуатор для транспортировки неисправных автомобилей.",
       ky: "Бuzulgan унааларды ташуу үчүн эвакуатор.",

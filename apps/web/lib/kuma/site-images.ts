@@ -1,8 +1,9 @@
 /** Local Hyundai imagery — unified corporate asset library */
 import { MEDIA } from "./media";
+import { withBasePath } from "./base-path";
 
 const V = "8";
-const p = (file: string) => `/images/hero/${file}?v=${V}`;
+const p = (file: string) => withBasePath(`/images/hero/${file}?v=${V}`);
 
 export const SITE_IMAGES = {
   gt8: p("slide-gt8.png"),
