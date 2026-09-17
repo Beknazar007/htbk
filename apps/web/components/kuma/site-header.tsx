@@ -166,11 +166,11 @@ export function SiteHeader() {
                       className="group overflow-hidden rounded-xl border border-gray-100 bg-white shadow-sm transition-all hover:shadow-lg"
                     >
                       <div className="relative aspect-[4/3] bg-gray-50 p-2">
-                        <img src={item.image} alt={item.name.ru} className="h-full w-full object-contain transition-transform group-hover:scale-105" />
+                        <img src={item.image} alt={locale === "ky" ? item.name.ky : item.name.ru} className="h-full w-full object-contain transition-transform group-hover:scale-105" />
                       </div>
                       <div className="p-3">
                         <p className="text-[10px] font-bold uppercase text-kuma-500">{item.model}</p>
-                        <h4 className="text-sm font-bold text-kuma-900">{item.name.ru}</h4>
+                        <h4 className="text-sm font-bold text-kuma-900">{locale === "ky" ? item.name.ky : item.name.ru}</h4>
                       </div>
                     </Link>
                   ))}
@@ -221,7 +221,7 @@ export function SiteHeader() {
                     onClick={() => setMobileOpen(false)}
                     className="kuma-touch block rounded-lg px-3 py-2.5 text-sm text-kuma-700 hover:bg-kuma-50"
                   >
-                    {item.name.ru}
+                    {locale === "ky" ? item.name.ky : item.name.ru}
                   </Link>
                 ))}
               </div>
